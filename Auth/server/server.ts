@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = 3001;
 const dotenv = require('dotenv');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -63,6 +63,11 @@ app.get('/login', async (req, res) => {
         console.log(error);
         res.send('Error logging in');
     }
+});
+
+app.get('/user', async (req, res) => {
+    const user= await prisma.user.findMany();
+    res.json(user);
 });
 
 app.listen(port, () => {
