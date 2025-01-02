@@ -18,4 +18,12 @@ model User{
   email     String @unique
   username  String @unique
   password  String
+  role  String @default("user")
+}
+
+model Product{
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  price     Float
+  image     String
 }
