@@ -93,7 +93,7 @@ const Register = () => {
           >
             register
           </button>
-          <Link to="/"  className='text-blue-500 flex justify-center mt-4 underline'>Login</Link>
+          <Link to="/login"  className='text-blue-500 flex justify-center mt-4 underline'>Login</Link>
         </form>
       </div>
     </div>

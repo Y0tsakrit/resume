@@ -116,7 +116,14 @@ app.get('/items', async (req, res) => {
     res.json(items);
 }); // Get all items by keyword
 
-
+app.get('/products', async (req, res) => {
+    try{
+        const products = await prisma.product.findMany();
+        res.json(products);
+    }catch(error){
+        res.send('Error getting products');
+    }
+});
 app.get('/tokencheck',async (req,res)=>{
     const token = req.headers['authorization'];
     if(!token){
