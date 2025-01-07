@@ -1,10 +1,12 @@
 "use client";
 
-import { Link, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import React from 'react';
 
 const Login = () =>{
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: "",
         password: "",
@@ -32,8 +34,11 @@ const Login = () =>{
                 })
             })
             if(response.ok){
+                const data = await response.json();
+                localStorage.setItem("authToken", data.token);
                 alert("User logged in successfully");
-            } else {
+                navigate('/');
+            }else {
                 alert("Invalid email or password");
             }
         } catch (error) {

@@ -38,6 +38,7 @@ app.post('/register', async (req, res) => {
         });
         res.send('User registered successfully');
     }catch(error){
+        console.log(error);
         res.send('Error registering user');
     }
 }); // Register a user
@@ -102,8 +103,8 @@ app.delete('/items-sold', async (req, res) => {
     }
 }); // Sell an item
 
-app.get('/items', async (req, res) => {
-    const keyword = req.body.keyword;
+app.get('/items/:keyword', async (req, res) => {
+    const keyword = req.params.keyword;
     const items = await prisma.product.findMany(
         {
             where :{

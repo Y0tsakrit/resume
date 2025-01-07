@@ -8,6 +8,7 @@ const Shelf = () => {
       try {
         const response = await fetch("http://localhost:3001/products");
         const data = await response.json();
+        console.log(data);
         setProducts(data);
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -18,7 +19,7 @@ const Shelf = () => {
   }, []);
 
   return (
-    <div className="flex flex-row gap-10 mt-10">
+    <div className="flex flex-row flex-wrap gap-10 m-10">
       {products.map((product, index) => (
         <div key={index} className="flex flex-col items-center gap-2 border border-black rounded-md justify-start w-[150px] h-[200px]">
           <img src={product.image} alt={product.name} className="w-full h-1/2 object-cover" />

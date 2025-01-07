@@ -1,9 +1,11 @@
 "use client";
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import React from 'react';
 
 const Register = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -21,9 +23,9 @@ const Register = () => {
   };
 
   const handleSubmit = async (e) => {
+    e.preventDefault()
     if (formData.password !== formData.confirmPassword || !formData.username || !formData.email || !formData.password) {
       alert("Invalid form data");
-      return;
     }
 
     try {
@@ -41,8 +43,7 @@ const Register = () => {
 
       if (response.ok) {
         alert("User registered successfully");
-      } else {
-        alert("Error registering user");
+        navigate('/login');
       }
     } catch (error) {
       console.error("Error:", error);
